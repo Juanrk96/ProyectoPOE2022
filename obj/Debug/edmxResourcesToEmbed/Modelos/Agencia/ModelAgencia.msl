@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sivarviajesModelStoreContainer" CdmEntityContainer="agenciaViajesEntities">
+    <EntitySetMapping Name="detalle_reservacion">
+      <EntityTypeMapping TypeName="sivarviajesModel.detalle_reservacion">
+        <MappingFragment StoreEntitySet="detalle_reservacion">
+          <ScalarProperty Name="idDetalle" ColumnName="idDetalle" />
+          <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
+          <ScalarProperty Name="idPasajero" ColumnName="idPasajero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pasajero">
+      <EntityTypeMapping TypeName="sivarviajesModel.pasajero">
+        <MappingFragment StoreEntitySet="pasajero">
+          <ScalarProperty Name="idPasajero" ColumnName="idPasajero" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservacion">
+      <EntityTypeMapping TypeName="sivarviajesModel.reservacion">
+        <MappingFragment StoreEntitySet="reservacion">
+          <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="cantReservada" ColumnName="cantReservada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vuelo">
+      <EntityTypeMapping TypeName="sivarviajesModel.vuelo">
+        <MappingFragment StoreEntitySet="vuelo">
+          <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
+          <ScalarProperty Name="aerolinea" ColumnName="aerolinea" />
+          <ScalarProperty Name="origen" ColumnName="origen" />
+          <ScalarProperty Name="destino" ColumnName="destino" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora_salida" ColumnName="hora_salida" />
+          <ScalarProperty Name="hora_llegada" ColumnName="hora_llegada" />
+          <ScalarProperty Name="asientos" ColumnName="asientos" />
+          <ScalarProperty Name="costoVuelo" ColumnName="costoVuelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

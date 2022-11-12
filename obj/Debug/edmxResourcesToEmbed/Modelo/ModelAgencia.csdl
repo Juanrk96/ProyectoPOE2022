@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sivarviajesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="detalle_reservacion">
+    <Key>
+      <PropertyRef Name="idDetalle" />
+    </Key>
+    <Property Name="idDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idReservacion" Type="Int32" />
+    <Property Name="idPasajero" Type="Int32" />
+  </EntityType>
+  <EntityType Name="pasajero">
+    <Key>
+      <PropertyRef Name="idPasajero" />
+    </Key>
+    <Property Name="idPasajero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="reservacion">
+    <Key>
+      <PropertyRef Name="idReservacion" />
+    </Key>
+    <Property Name="idReservacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="idVuelo" Type="Int32" />
+    <Property Name="cantReservada" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vuelo">
+    <Key>
+      <PropertyRef Name="idVuelo" />
+    </Key>
+    <Property Name="idVuelo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aerolinea" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="origen" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="destino" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="hora_salida" Type="Time" Precision="7" />
+    <Property Name="hora_llegada" Type="Time" Precision="7" />
+    <Property Name="asientos" Type="Int32" />
+    <Property Name="costoVuelo" Type="Double" />
+  </EntityType>
+  <Association Name="FK__detalle_r__idPas__2C3393D0">
+    <End Role="pasajero" Type="Self.pasajero" Multiplicity="0..1" />
+    <End Role="detalle_reservacion" Type="Self.detalle_reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pasajero">
+        <PropertyRef Name="idPasajero" />
+      </Principal>
+      <Dependent Role="detalle_reservacion">
+        <PropertyRef Name="idPasajero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detalle_r__idRes__2B3F6F97">
+    <End Role="reservacion" Type="Self.reservacion" Multiplicity="0..1" />
+    <End Role="detalle_reservacion" Type="Self.detalle_reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservacion">
+        <PropertyRef Name="idReservacion" />
+      </Principal>
+      <Dependent Role="detalle_reservacion">
+        <PropertyRef Name="idReservacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reservaci__idVue__267ABA7A">
+    <End Role="vuelo" Type="Self.vuelo" Multiplicity="0..1" />
+    <End Role="reservacion" Type="Self.reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vuelo">
+        <PropertyRef Name="idVuelo" />
+      </Principal>
+      <Dependent Role="reservacion">
+        <PropertyRef Name="idVuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sivarviajesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="detalle_reservacion" EntityType="Self.detalle_reservacion" />
+    <EntitySet Name="pasajero" EntityType="Self.pasajero" />
+    <EntitySet Name="reservacion" EntityType="Self.reservacion" />
+    <EntitySet Name="vuelo" EntityType="Self.vuelo" />
+    <AssociationSet Name="FK__detalle_r__idPas__2C3393D0" Association="Self.FK__detalle_r__idPas__2C3393D0">
+      <End Role="pasajero" EntitySet="pasajero" />
+      <End Role="detalle_reservacion" EntitySet="detalle_reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detalle_r__idRes__2B3F6F97" Association="Self.FK__detalle_r__idRes__2B3F6F97">
+      <End Role="reservacion" EntitySet="reservacion" />
+      <End Role="detalle_reservacion" EntitySet="detalle_reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reservaci__idVue__267ABA7A" Association="Self.FK__reservaci__idVue__267ABA7A">
+      <End Role="vuelo" EntitySet="vuelo" />
+      <End Role="reservacion" EntitySet="reservacion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
