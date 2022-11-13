@@ -9,34 +9,46 @@
 
     <Grid>
         <Grid Width="Auto" Height="Auto">
-            <Label Content="Informacion de Reservacion" HorizontalAlignment="Center" Margin="213,7,222,0" VerticalAlignment="Top" Width="505" FontWeight="Bold" HorizontalContentAlignment="Center" Height="30" FontSize="18"/>
-            <Label Content="E-Mail:" HorizontalAlignment="Center" Margin="627,49,84,0" VerticalAlignment="Top" Height="38" Width="229" FontSize="18"/>
-            <Label Content="Nombre de Pasajero" HorizontalAlignment="Center" Margin="61,50,567,0" VerticalAlignment="Top" Width="312" Height="37" FontSize="18"/>
-            <Label Content="Telefono" HorizontalAlignment="Center" Margin="629,113,101,0" VerticalAlignment="Top" Width="210" Height="37" FontSize="18"/>
-            <TextBox x:Name="txtNombre" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.nombre}" HorizontalAlignment="Center" Height="30" Margin="62,79,354,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="524" FontSize="18" />
-            <TextBox x:Name="txtEmail" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.email}" HorizontalAlignment="Center" Height="29" Margin="629,144,92,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="18"  />
-            <TextBox x:Name="txtDireccion" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.direccion}" HorizontalAlignment="Center" Height="30" Margin="62,143,354,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="524" FontSize="18" />
-            <TextBox x:Name="txtTelefono" Text="{Binding SelectedItem.telefono, ElementName=DGPasajero}" HorizontalAlignment="Center" Height="29" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="18"  Margin="635,79,98,0"  />
+            <Label Content="Reservaciones y Detalles" HorizontalAlignment="Center" Margin="244,7,253,0" VerticalAlignment="Top" Width="506" FontWeight="Bold" HorizontalContentAlignment="Center" Height="36" FontSize="18"/>
+            <Label Content="Pasajero" HorizontalAlignment="Center" Margin="129,48,681,0" VerticalAlignment="Top" Width="193" Height="37" FontSize="18"/>
+            <DatePicker x:Name="dpFecha" SelectedDate="{Binding SelectedItem.fecha, ElementName=DGVuelos}" HorizontalAlignment="Center" Margin="523,82,288,0" VerticalAlignment="Top" Height="30" Width="192"/>
 
+            <ComboBox x:Name="cboPasajeros" HorizontalAlignment="Center" Margin="132,82,691,0" VerticalAlignment="Top" Height="30" Width="180"/>
+            <ComboBox x:Name="cboVuelos" HorizontalAlignment="Center" Margin="328,82,495,0" VerticalAlignment="Top" Height="30" Width="180"/>
+            <TextBox x:Name="txtAsientos" Text="{Binding SelectedItem.cantReservada, ElementName=DGDetalles}" HorizontalAlignment="Center" Height="30" Margin="724,82,134,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" FontSize="18" />
 
-            <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="461,199,361,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />
-            <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Center" Margin="332,199,496,0" VerticalAlignment="Top" Width="124" Height="36" FontSize="18" Click="btnCancelar_Click" />
+            <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="668,128,142,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />
+            <!--Click="btnGuardar_Click" -->
+            <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Center" Margin="514,128,302,0" VerticalAlignment="Top" Width="124" Height="36" FontSize="18"/>
+            <!--Click="btnCancelar_Click" -->
 
 
             <Label x:Name="lblMensajeAlerta" Content="" Foreground="DarkRed" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="193,314,177,0" VerticalAlignment="Top" Width="570" Height="32" FontSize="18"/>
-            <Label Content="Direccion de Pasajero" HorizontalAlignment="Center" Margin="61,114,567,0" VerticalAlignment="Top" Width="312" Height="37" FontSize="18"/>
-            <Button x:Name="Agregar_nuevo" Content="Nuevo" HorizontalAlignment="Center" Margin="197,199,625,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="Agregar_nuevo_Click" />
-            <CheckBox x:Name ="chkEliminar" Content="Eliminar" HorizontalAlignment="Center" Height="30" Margin="68,185,792,0"  VerticalAlignment="Top" Width="92" FontSize="18" Checked="CheckBox_Checked"/>
-            <DataGrid x:Name="DGPasajero" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" Height="Auto" Margin="67,257,98,20" Width="787" FontSize="18" PreviewMouseUp="DGPasajero_PreviewMouseUp">
+            <Label Content="Vuelo" HorizontalAlignment="Center" Margin="332,48,479,0" VerticalAlignment="Top" Width="192" Height="37" FontSize="18"/>
+            <Button x:Name="Agregar_nuevo" Content="Nuevo" HorizontalAlignment="Center" Margin="351,129,459,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="Agregar_nuevo_Click"/>
+            <!--Click="Agregar_nuevo_Click" -->
+            <CheckBox x:Name ="chkEliminar" Content="Eliminar" HorizontalAlignment="Center" Height="30" Margin="193,135,655,0"  VerticalAlignment="Top" Width="92" FontSize="18" Checked="CheckBox_Checked"/>
+            <!--Checked="CheckBox_Checked"-->
+            <TextBox x:Name="txtIdDetallesReserva" Text="{Binding ElementName=DGDetalles,Path=SelectedItem.idDetalle}" HorizontalAlignment="Center" Height="29" Margin="27,135,919,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" FontSize="18" IsEnabled="False"  Visibility="Hidden" />
+            <TextBox x:Name="txtIdReservacion" Text="{Binding ElementName=DGDetalles,Path=SelectedItem.idReservacion}" HorizontalAlignment="Center" Height="29" Margin="27,135,919,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" FontSize="18" IsEnabled="False"  Visibility="Hidden" />
+
+            <Label Content="Fecha" HorizontalAlignment="Center" Margin="523,48,388,0" VerticalAlignment="Top" Width="92" Height="37" FontSize="18"/>
+
+            <Label Content="Cant. Reservada" HorizontalAlignment="Center" Margin="723,48,153,0" VerticalAlignment="Top" Width="127" Height="37" FontSize="18" RenderTransformOrigin="0.535,2.909"/>
+            <DataGrid x:Name="DGDetalles" AutoGenerateColumns="False" IsReadOnly="True"  Margin="27,180,27,27" Width="Auto" Height="Auto" FontSize="18"  ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" PreviewMouseUp="DGPasajero_PreviewMouseUp">
+                <!--PreviewMouseUp="DGPasajero_PreviewMouseUp"-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="60" Header="ID" x:Name="id" Binding="{Binding id}" CanUserResize="False"></DataGridTextColumn>
-                    <DataGridTextColumn Width="200" Header="Nombre" x:Name="nombre"  Binding="{Binding nombre}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="200" Header="Direccion" x:Name="direccion" Binding="{Binding direccion}"></DataGridTextColumn>
-                    <DataGridTextColumn Width="135" Header="Telefono" x:Name="telefono"  Binding="{Binding telefono}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="E-Mail" x:Name="email"  Binding="{Binding email}"></DataGridTextColumn>
-                    </DataGrid.Columns>
+                    <DataGridTextColumn  Header="ID" x:Name="idDetalle" Binding="{Binding idDetalle}" CanUserResize="False" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn  Header="ID Reservacion" x:Name="idReservacion" Binding="{Binding idReservacion}" CanUserResize="False"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Pasajero" x:Name="nombrePasajero"  Binding="{Binding nombrePasajero}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="idPasajero" x:Name="idPasajero" Binding="{Binding idPasajero}" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Vuelo" x:Name="destino"  Binding="{Binding destino}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="idVuelo" x:Name="idVuelo" Binding="{Binding idVuelo}" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Fecha de reservacion" x:Name="fecha"  Binding="{Binding fecha}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cantidad Reservada" x:Name="canReservada"  Binding="{Binding cantReservada}"></DataGridTextColumn>
+                </DataGrid.Columns>
             </DataGrid>
-            <TextBox x:Name="txtIdPropietrio" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.id}" HorizontalAlignment="Center" Height="29" Margin="68,215,827,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" FontSize="18" IsEnabled="False"  />
+
             <Grid.Background>
                 <SolidColorBrush Color="LightBlue" Opacity="0.40"/>
             </Grid.Background>

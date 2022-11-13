@@ -121,17 +121,6 @@ namespace ProyectoPOE
             };
 
         }
-        private void bgDetalle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            tg_btn.IsChecked = false;
-            Modulos.DetallesPage detallesPage = new Modulos.DetallesPage();
-            frPrincipal.NavigationService.Navigate(detallesPage);
-            img_bg.Effect = new System.Windows.Media.Effects.BlurEffect()
-            {
-                Radius = 15
-            };
-
-        }
         private void bgReportes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             tg_btn.IsChecked = false;
