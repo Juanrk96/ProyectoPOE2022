@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoPOE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="600" MinHeight="550" MinWidth="600">
+        Title="MainWindow" Height="600" Width="1280" MinHeight="600" MinWidth="1280">
     <Window.Resources>
         <!--//Template para boton//-->
         <ImageBrush x:Key="tb_mouse_over"
@@ -221,7 +221,7 @@
 
                             <StackPanel Orientation="Horizontal"
                                         Width="230"
-                                        MouseLeftButtonDown="bg_MouseLeftButtonDown">
+                                        MouseLeftButtonDown="bgInicio_MouseLeftButtonDown">
 
                                 <Image Source="/media/icons8-top-menu-96.png"                                       
                                        Height="30"

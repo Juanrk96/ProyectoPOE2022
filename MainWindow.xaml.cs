@@ -59,7 +59,7 @@ namespace ProyectoPOE
             img_bg.Opacity = 0.3;
         }
 
-        private void bg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void bgInicio_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             frPrincipal.NavigationService.Navigate(null);
             img_bg.Effect = new System.Windows.Media.Effects.BlurEffect()
@@ -67,6 +67,22 @@ namespace ProyectoPOE
                 Radius = 0
             };
             tg_btn.IsChecked = false;
+
+        }
+
+        private void bg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            if (frPrincipal.NavigationService.Content == null)
+            {
+
+                frPrincipal.NavigationService.Navigate(null);
+                img_bg.Effect = new System.Windows.Media.Effects.BlurEffect()
+                {
+                    Radius = 0
+                };
+                tg_btn.IsChecked = false;
+            }
 
         }
 
