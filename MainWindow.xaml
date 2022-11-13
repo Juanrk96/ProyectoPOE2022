@@ -323,10 +323,10 @@
                         <ListViewItem HorizontalAlignment="Left"
                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
 
-                            <StackPanel x:Name="Reportes"
+                            <StackPanel x:Name="Reportes_Pasjeros"
                                         Orientation="Horizontal"
                                         Width="230"
-                                        MouseLeftButtonDown="bgReportes_MouseLeftButtonDown">
+                                        MouseLeftButtonDown="bgReportesPasajeros_MouseLeftButtonDown">
 
                                 <Image Source="/media/icons8-list-view-96.png"                                       
                                        Height="30"
@@ -338,13 +338,65 @@
 
                             <!--// Tooltip //-->
                             <ListViewItem.ToolTip>
-                                <ToolTip x:Name="tt_reportes"
-                                         Content="Reportes"
+                                <ToolTip x:Name="tt_reportes_pasajeros"
+                                         Content="Reportes Pasajeros"
                                          Style="{StaticResource tt_style}"/>
                             </ListViewItem.ToolTip>
 
                         </ListViewItem>
-                        <!--// Detalle //-->
+                        <!--// Reportes //-->
+                        <!--// Reportes //-->
+                        <ListViewItem HorizontalAlignment="Left"
+                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
+
+                            <StackPanel x:Name="Reportes_Vuelos"
+                                        Orientation="Horizontal"
+                                        Width="230"
+                                        MouseLeftButtonDown="bgReportesVuelos_MouseLeftButtonDown">
+
+                                <Image Source="/media/icons8-list-view-96.png"                                       
+                                       Height="30"
+                                       Margin="12,0,0,0"/>
+                                <TextBlock Text="Reportes"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+                            </StackPanel>
+
+                            <!--// Tooltip //-->
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="tt_reportes_vuelos"
+                                         Content="Reportes Vuelos"
+                                         Style="{StaticResource tt_style}"/>
+                            </ListViewItem.ToolTip>
+
+                        </ListViewItem>
+                        <!--// Reportes //-->
+                        <!--// Reportes //-->
+                        <ListViewItem HorizontalAlignment="Left"
+                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
+
+                            <StackPanel x:Name="Reportes_Detalles"
+                                        Orientation="Horizontal"
+                                        Width="230"
+                                        MouseLeftButtonDown="bgReportesDetalles_MouseLeftButtonDown">
+
+                                <Image Source="/media/icons8-list-view-96.png"                                       
+                                       Height="30"
+                                       Margin="12,0,0,0"/>
+                                <TextBlock Text="Reportes"
+                                           Margin="25,0,0,0"
+                                           Style="{StaticResource font_style}"/>
+                            </StackPanel>
+
+                            <!--// Tooltip //-->
+                            <ListViewItem.ToolTip>
+                                <ToolTip x:Name="tt_reportes_detalles"
+                                         Content="Reportes Detalles"
+                                         Style="{StaticResource tt_style}"/>
+                            </ListViewItem.ToolTip>
+
+                        </ListViewItem>
+                        <!--// Reportes //-->
 
                         <!--// Estilo ListView//-->
                         <ListView.ItemContainerStyle>

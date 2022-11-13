@@ -35,7 +35,9 @@ namespace ProyectoPOE
                 tt_pasajero.Visibility = Visibility.Collapsed;
                 tt_vuelo.Visibility = Visibility.Collapsed;
                 tt_reserva.Visibility = Visibility.Collapsed;
-                tt_reportes.Visibility = Visibility.Collapsed;
+                tt_reportes_pasajeros.Visibility = Visibility.Collapsed;
+                tt_reportes_vuelos.Visibility = Visibility.Collapsed;
+                tt_reportes_detalles.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -43,7 +45,9 @@ namespace ProyectoPOE
                 tt_pasajero.Visibility = Visibility.Visible;
                 tt_vuelo.Visibility = Visibility.Visible;
                 tt_reserva.Visibility = Visibility.Visible;
-                tt_reportes.Visibility = Visibility.Visible;
+                tt_reportes_pasajeros.Visibility = Visibility.Visible;
+                tt_reportes_vuelos.Visibility = Visibility.Visible;
+                tt_reportes_detalles.Visibility = Visibility.Visible;
             }
         }
 
@@ -119,7 +123,20 @@ namespace ProyectoPOE
             };
 
         }
-        private void bgReportes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void bgReportesPasajeros_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            tg_btn.IsChecked = false;
+            //AGREGAR REPORTE(S)
+            //Estructura para reporte: Reportes.[Nombre del reporte CR] [variable del reporte] = new Reportes.[Nombre del reporte CR]();
+            Modulos.PasajerosPage pasajerosPage = new Modulos.PasajerosPage();
+            frPrincipal.NavigationService.Navigate(pasajerosPage);
+            img_bg.Effect = new System.Windows.Media.Effects.BlurEffect()
+            {
+                Radius = 15
+            };
+
+        }
+        private void bgReportesVuelos_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             tg_btn.IsChecked = false;
             //AGREGAR REPORTE(S)
@@ -131,7 +148,18 @@ namespace ProyectoPOE
             };
 
         }
+        private void bgReportesDetalles_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            tg_btn.IsChecked = false;
+            //AGREGAR REPORTE(S)
+            Modulos.PasajerosPage pasajerosPage = new Modulos.PasajerosPage();
+            frPrincipal.NavigationService.Navigate(pasajerosPage);
+            img_bg.Effect = new System.Windows.Media.Effects.BlurEffect()
+            {
+                Radius = 15
+            };
 
+        }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
