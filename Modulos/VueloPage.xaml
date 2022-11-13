@@ -13,9 +13,13 @@
             <Label Content="Aerolinea" HorizontalAlignment="Center" Margin="61,50,686,0" VerticalAlignment="Top" Width="193" Height="37" FontSize="18"/>
             <Label Content="Destino" HorizontalAlignment="Center" Margin="288,114,459,0" VerticalAlignment="Top" Width="193" Height="37" FontSize="18"/>
             <TextBox x:Name="txtAerolinea" Text="{Binding ElementName=DGVuelos,Path=SelectedItem.aerolinea}" HorizontalAlignment="Center" Height="30" Margin="65,84,686,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" FontSize="18" />
-            <TextBox x:Name="txtDestino" Text="{Binding ElementName=DGVuelos,Path=SelectedItem.destino}" HorizontalAlignment="Center" Height="29" Margin="288,145,408,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" FontSize="18"  />
+            <DatePicker x:Name="dpFecha" SelectedDate="{Binding SelectedItem.fecha, ElementName=DGVuelos}" HorizontalAlignment="Center" Margin="288,84,459,0" VerticalAlignment="Top" Height="30" Width="193"/>
+            <TextBox x:Name="txtSalida" Text="{Binding SelectedItem.salida, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="551,84,246,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
+            <TextBox x:Name="txtLlegada" Text="{Binding SelectedItem.llegada, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="648,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
             <TextBox x:Name="txtOrigen" Text="{Binding ElementName=DGVuelos,Path=SelectedItem.origen}" HorizontalAlignment="Center" Height="30" Margin="65,144,689,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" FontSize="18" />
-
+            <TextBox x:Name="txtDestino" Text="{Binding ElementName=DGVuelos,Path=SelectedItem.destino}" HorizontalAlignment="Center" Height="29" Margin="288,145,408,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" FontSize="18"  />
+            <TextBox x:Name="txtAsientos" Text="{Binding SelectedItem.asientos, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="554,143,243,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
+            <TextBox x:Name="txtCosto" Text="{Binding SelectedItem.costo, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="648,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
 
             <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="668,186,142,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />
             <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Center" Margin="514,186,302,0" VerticalAlignment="Top" Width="124" Height="36" FontSize="18" Click="btnCancelar_Click" />
@@ -29,25 +33,20 @@
             <Label Content="Fecha" HorizontalAlignment="Center" Margin="288,50,559,0" VerticalAlignment="Top" Width="93" Height="37" FontSize="18"/>
             <Label Content="Hora de Salida" HorizontalAlignment="Center" Margin="551,50,246,0" VerticalAlignment="Top" Width="143" Height="37" FontSize="18"/>
             <Label Content="Hora de llegada" HorizontalAlignment="Center" Margin="648,50,0,0" VerticalAlignment="Top" Width="143" Height="37" FontSize="18"/>
-            <DatePicker x:Name="dpFecha" SelectedDate="{Binding SelectedItem.fecha, ElementName=DGVuelos}" HorizontalAlignment="Center" Margin="288,84,459,0" VerticalAlignment="Top" Height="30" Width="193"/>
-
+            
             <Label Content="Asientos" HorizontalAlignment="Center" Margin="554,114,259,0" VerticalAlignment="Top" Width="127" Height="37" FontSize="18" RenderTransformOrigin="0.535,2.909"/>
             <Label Content="Costo" HorizontalAlignment="Center" Margin="648,114,0,0" VerticalAlignment="Top" Width="94" Height="37" FontSize="18"/>
-            <TextBox x:Name="txtAsientos" Text="{Binding SelectedItem.asientos, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="554,143,243,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
-            <TextBox x:Name="txtCosto" Text="{Binding SelectedItem.costo, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="648,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
-            <TextBox x:Name="txtLlegada" Text="{Binding SelectedItem.llegada, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="648,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
-            <TextBox x:Name="txtSalida" Text="{Binding SelectedItem.salida, ElementName=DGVuelos}" HorizontalAlignment="Center" Height="30" Margin="551,84,246,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" FontSize="18" />
-            <DataGrid x:Name="DGVuelos" AutoGenerateColumns="False" IsReadOnly="True"  Margin="27,239,27,27" Width="Auto" Height="Auto" FontSize="18" PreviewMouseUp="DGPasajero_PreviewMouseUp">
+            <DataGrid x:Name="DGVuelos" AutoGenerateColumns="False" IsReadOnly="True"  Margin="27,239,27,27" Width="Auto" Height="Auto" FontSize="18" PreviewMouseUp="DGPasajero_PreviewMouseUp" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="60" Header="ID" x:Name="id" Binding="{Binding id}" CanUserResize="False"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Aerolinea" x:Name="aerolinea"  Binding="{Binding aerolinea}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Origen" x:Name="origen" Binding="{Binding origen}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Destino" x:Name="destino"  Binding="{Binding destino}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Fecha" x:Name="fecha"  Binding="{Binding fecha}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Salida" x:Name="salida"  Binding="{Binding salida}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Llegada" x:Name="llegada"  Binding="{Binding llegada}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="asientos" x:Name="asientos"  Binding="{Binding asientos}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Costo" x:Name="costo"  Binding="{Binding costo}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*"  Header="ID" x:Name="id" Binding="{Binding id}" CanUserResize="False"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Aerolinea" x:Name="aerolinea"  Binding="{Binding aerolinea}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Origen" x:Name="origen" Binding="{Binding origen}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Destino" x:Name="destino"  Binding="{Binding destino}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Fecha" x:Name="fecha"  Binding="{Binding fecha}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Salida" x:Name="salida"  Binding="{Binding salida}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Llegada" x:Name="llegada"  Binding="{Binding llegada}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="asientos" x:Name="asientos"  Binding="{Binding asientos}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Costo" x:Name="costo"  Binding="{Binding costo}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
 

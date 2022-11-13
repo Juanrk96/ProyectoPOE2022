@@ -75,6 +75,7 @@ namespace ProyectoPOE.Modulos
             btnGuardar.IsEnabled = false;
 
             chkEliminar.IsChecked = false;
+            chkEliminar.IsEnabled = false;
             Agregar_nuevo.IsEnabled = true;
 
             txtAerolinea.Text = "";
