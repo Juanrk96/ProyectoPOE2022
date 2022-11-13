@@ -15,7 +15,6 @@ create table vuelo (
 
 create table reservacion (
 	idReservacion int Identity(1,1) Primary key,
-	codigo varchar(40),
 	fecha date,
 	idVuelo int FOREIGN KEY REFERENCES vuelo(idVuelo),
 	cantReservada int	

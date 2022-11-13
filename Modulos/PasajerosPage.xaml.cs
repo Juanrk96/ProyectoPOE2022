@@ -106,9 +106,17 @@ namespace ProyectoPOE.Modulos
                 }
                 else if (EstadoActual == ((int)EstadosPasajeros.Eliminar) || chkEliminar.IsChecked == true)
                 {
-                    var oPasajero = db.pasajero.Find(Convert.ToInt32(txtIdPropietrio.Text));
-                    db.Entry(oPasajero).State = System.Data.Entity.EntityState.Deleted;
-                    db.SaveChanges();
+                    try
+                    {
+                        var oPasajero = db.pasajero.Find(Convert.ToInt32(txtIdPropietrio.Text));
+                        db.Entry(oPasajero).State = System.Data.Entity.EntityState.Deleted;
+                        db.SaveChanges();
+                        lblMensajeAlerta.Content = "";
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMensajeAlerta.Content = "No se puede eliminar, El resgistro esta referencado a otro(s) record(s)";
+                    }
                 }
 
             }

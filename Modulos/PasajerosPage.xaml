@@ -23,11 +23,11 @@
             <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Center" Margin="332,199,496,0" VerticalAlignment="Top" Width="124" Height="36" FontSize="18" Click="btnCancelar_Click" />
 
 
-            <Label x:Name="lblMensajeAlerta" Content="" Foreground="DarkRed" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="193,314,177,0" VerticalAlignment="Top" Width="570" Height="32" FontSize="18"/>
+            <Label x:Name="lblMensajeAlerta" Content="" Foreground="DarkRed" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="197,247,185,0" VerticalAlignment="Top" Width="570" Height="32" FontSize="18"/>
             <Label Content="Direccion de Pasajero" HorizontalAlignment="Center" Margin="61,114,567,0" VerticalAlignment="Top" Width="312" Height="37" FontSize="18"/>
             <Button x:Name="Agregar_nuevo" Content="Nuevo" HorizontalAlignment="Center" Margin="197,199,625,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="Agregar_nuevo_Click" />
             <CheckBox x:Name ="chkEliminar" Content="Eliminar" HorizontalAlignment="Center" Height="30" Margin="68,185,792,0"  VerticalAlignment="Top" Width="92" FontSize="18" Checked="CheckBox_Checked"/>
-            <DataGrid x:Name="DGPasajero" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" Height="Auto" Margin="67,257,98,20" Width="787" FontSize="18" PreviewMouseUp="DGPasajero_PreviewMouseUp">
+            <DataGrid x:Name="DGPasajero" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Center" Height="Auto" Margin="67,279,98,15" Width="787" FontSize="18" PreviewMouseUp="DGPasajero_PreviewMouseUp">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="60" Header="ID" x:Name="id" Binding="{Binding id}" CanUserResize="False"></DataGridTextColumn>
                     <DataGridTextColumn Width="200" Header="Nombre" x:Name="nombre"  Binding="{Binding nombre}"></DataGridTextColumn>

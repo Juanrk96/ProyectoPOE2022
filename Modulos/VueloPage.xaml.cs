@@ -107,9 +107,9 @@ namespace ProyectoPOE.Modulos
                     oVuelo.asientos = int.Parse(txtAsientos.Text);
                     oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
                     db.vuelo.Add(oVuelo);
-                    db.Entry(oVuelo).State = System.Data.Entity.EntityState.Added;
-                    
+                    db.Entry(oVuelo).State = System.Data.Entity.EntityState.Added;                    
                     db.SaveChanges();
+                    lblMensajeAlerta.Content = "";
                 }
                 else if (EstadoActual == ((int)EstadosVuelo.Modificar))
                 {
@@ -124,12 +124,23 @@ namespace ProyectoPOE.Modulos
                     oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
                     db.Entry(oVuelo).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
+                    lblMensajeAlerta.Content = "";
+
                 }
                 else if (EstadoActual == ((int)EstadosVuelo.Eliminar) || chkEliminar.IsChecked == true)
                 {
-                    var oVuelo = db.vuelo.Find(Convert.ToInt32(txtIdVuelo.Text));
-                    db.Entry(oVuelo).State = System.Data.Entity.EntityState.Deleted;
-                    db.SaveChanges();
+                    try
+                    {
+                        var oVuelo = db.vuelo.Find(Convert.ToInt32(txtIdVuelo.Text));
+                        db.Entry(oVuelo).State = System.Data.Entity.EntityState.Deleted;
+                        db.SaveChanges();
+                        lblMensajeAlerta.Content = "";
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMensajeAlerta.Content = "No se puede eliminar, El resgistro esta referencado a otro(s) record(s)";
+                    }
+                    
                 }
 
             }

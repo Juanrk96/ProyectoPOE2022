@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sivarviajesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sivarviajesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="detalle_reservacion">
           <Key>
             <PropertyRef Name="idDetalle" />
@@ -28,7 +28,6 @@
             <PropertyRef Name="idReservacion" />
           </Key>
           <Property Name="idReservacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codigo" Type="varchar" MaxLength="40" />
           <Property Name="fecha" Type="date" />
           <Property Name="idVuelo" Type="int" />
           <Property Name="cantReservada" Type="int" />
@@ -101,8 +100,7 @@
             <End Role="reservacion" EntitySet="reservacion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sivarviajesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -129,7 +127,6 @@
             <PropertyRef Name="idReservacion" />
           </Key>
           <Property Name="idReservacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codigo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="idVuelo" Type="Int32" />
           <Property Name="cantReservada" Type="Int32" />
@@ -232,7 +229,6 @@
             <EntityTypeMapping TypeName="sivarviajesModel.reservacion">
               <MappingFragment StoreEntitySet="reservacion">
                 <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idVuelo" ColumnName="idVuelo" />
                 <ScalarProperty Name="cantReservada" ColumnName="cantReservada" />
