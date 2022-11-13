@@ -38,14 +38,14 @@
             <DataGrid x:Name="DGDetalles" AutoGenerateColumns="False" IsReadOnly="True"  Margin="27,180,27,27" Width="Auto" Height="Auto" FontSize="18"  ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" PreviewMouseUp="DGPasajero_PreviewMouseUp">
                 <!--PreviewMouseUp="DGPasajero_PreviewMouseUp"-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Header="ID" x:Name="idDetalle" Binding="{Binding idDetalle}" CanUserResize="False" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn  Header="ID Reservacion" x:Name="idReservacion" Binding="{Binding idReservacion}" CanUserResize="False"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Pasajero" x:Name="nombrePasajero"  Binding="{Binding nombrePasajero}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="idPasajero" x:Name="idPasajero" Binding="{Binding idPasajero}" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Vuelo" x:Name="destino"  Binding="{Binding destino}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="idVuelo" x:Name="idVuelo" Binding="{Binding idVuelo}" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Fecha de reservacion" x:Name="fecha"  Binding="{Binding fecha}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Cantidad Reservada" x:Name="canReservada"  Binding="{Binding cantReservada}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="ID" x:Name="idDetalle" Binding="{Binding idDetalle}" CanUserResize="False" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="ID Reservacion" x:Name="idReservacion" Binding="{Binding idReservacion}" CanUserResize="False"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Pasajero" x:Name="nombrePasajero"  Binding="{Binding nombrePasajero}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="idPasajero" x:Name="idPasajero" Binding="{Binding idPasajero}" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Vuelo" x:Name="destino"  Binding="{Binding destino}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="idVuelo" x:Name="idVuelo" Binding="{Binding idVuelo}" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Fecha de reservacion" x:Name="fecha"  Binding="{Binding fecha}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Cantidad Reservada" x:Name="canReservada"  Binding="{Binding cantReservada}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
