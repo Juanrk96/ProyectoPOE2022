@@ -35,7 +35,6 @@ namespace ProyectoPOE
                 tt_pasajero.Visibility = Visibility.Collapsed;
                 tt_vuelo.Visibility = Visibility.Collapsed;
                 tt_reserva.Visibility = Visibility.Collapsed;
-                tt_detalle.Visibility = Visibility.Collapsed;
                 tt_reportes.Visibility = Visibility.Collapsed;
             }
             else
@@ -44,7 +43,6 @@ namespace ProyectoPOE
                 tt_pasajero.Visibility = Visibility.Visible;
                 tt_vuelo.Visibility = Visibility.Visible;
                 tt_reserva.Visibility = Visibility.Visible;
-                tt_detalle.Visibility = Visibility.Visible;
                 tt_reportes.Visibility = Visibility.Visible;
             }
         }
