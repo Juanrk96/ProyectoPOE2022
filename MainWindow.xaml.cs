@@ -140,8 +140,8 @@ namespace ProyectoPOE
         {
             tg_btn.IsChecked = false;
             //AGREGAR REPORTE(S)
-            Modulos.PasajerosPage pasajerosPage = new Modulos.PasajerosPage();
-            frPrincipal.NavigationService.Navigate(pasajerosPage);
+            Modulos.ReportePage reportePage = new Modulos.ReportePage();
+            frPrincipal.NavigationService.Navigate(reportePage);
             img_bg.Effect = new System.Windows.Media.Effects.BlurEffect()
             {
                 Radius = 15
