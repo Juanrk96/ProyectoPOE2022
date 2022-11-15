@@ -18,5 +18,6 @@ namespace ProyectoPOE.Modelo
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> idVuelo { get; set; }
         public Nullable<int> cantReservada { get; set; }
+        public string codigo { get; set; }
     }
 }
