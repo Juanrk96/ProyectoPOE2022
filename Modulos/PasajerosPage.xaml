@@ -13,10 +13,10 @@
             <Label Content="E-Mail:" HorizontalAlignment="Center" Margin="627,49,84,0" VerticalAlignment="Top" Height="38" Width="229" FontSize="18"/>
             <Label Content="Nombre de Pasajero" HorizontalAlignment="Center" Margin="61,50,567,0" VerticalAlignment="Top" Width="312" Height="37" FontSize="18"/>
             <Label Content="Telefono" HorizontalAlignment="Center" Margin="629,113,101,0" VerticalAlignment="Top" Width="210" Height="37" FontSize="18"/>
-            <TextBox x:Name="txtNombre" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.nombre}" HorizontalAlignment="Center" Height="30" Margin="62,79,354,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="524" FontSize="18" />
-            <TextBox x:Name="txtEmail" Text="{Binding  ElementName=DGPasajero, Path=SelectedItem.email}" HorizontalAlignment="Center" Height="29" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="18"  Margin="635,79,98,0"  />
-            <TextBox x:Name="txtDireccion" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.direccion}" HorizontalAlignment="Center" Height="30" Margin="62,143,354,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="524" FontSize="18" />
-            <TextBox x:Name="txtTelefono" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.telefono}" HorizontalAlignment="Center" Height="29" Margin="629,144,92,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="18" PreviewTextInput="intOnly"  />
+            <TextBox x:Name="txtNombre"  Background="White" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.nombre}" HorizontalAlignment="Center" Height="30" Margin="62,79,354,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="524" FontSize="18" />
+            <TextBox x:Name="txtEmail"  Background="White" Text="{Binding  ElementName=DGPasajero, Path=SelectedItem.email}" HorizontalAlignment="Center" Height="29" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="18"  Margin="635,79,98,0"  />
+            <TextBox x:Name="txtDireccion"  Background="White" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.direccion}" HorizontalAlignment="Center" Height="30" Margin="62,143,354,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="524" FontSize="18" />
+            <TextBox x:Name="txtTelefono"  Background="White" Text="{Binding ElementName=DGPasajero,Path=SelectedItem.telefono}" HorizontalAlignment="Center" Height="29" Margin="629,144,92,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="18" PreviewTextInput="intOnly"  />
             
 
             <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="461,199,361,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />

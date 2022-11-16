@@ -11,11 +11,10 @@
         <Grid Width="Auto" Height="Auto">
             <Label Content="Reservaciones y Detalles" HorizontalAlignment="Center" Margin="244,7,253,0" VerticalAlignment="Top" Width="506" FontWeight="Bold" HorizontalContentAlignment="Center" Height="36" FontSize="18"/>
             <Label Content="Pasajero" HorizontalAlignment="Center" Margin="129,48,681,0" VerticalAlignment="Top" Width="193" Height="37" FontSize="18"/>
-            <DatePicker x:Name="dpFecha" SelectedDate="{Binding SelectedItem.fecha, ElementName=DGVuelos}" HorizontalAlignment="Center" Margin="523,82,288,0" VerticalAlignment="Top" Height="30" Width="192"/>
-
-            <ComboBox x:Name="cboPasajeros" HorizontalAlignment="Center" Margin="132,82,691,0" VerticalAlignment="Top" Height="30" Width="180"/>
-            <ComboBox x:Name="cboVuelos" HorizontalAlignment="Center" Margin="328,82,495,0" VerticalAlignment="Top" Height="30" Width="180" PreviewTextInput="IntOnly"/>
-            <TextBox x:Name="txtAsientos" Text="{Binding SelectedItem.cantReservada, ElementName=DGDetalles}" HorizontalAlignment="Center" Height="30" Margin="724,82,134,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" FontSize="18" />
+            <ComboBox x:Name="cboPasajeros" HorizontalAlignment="Center" Margin="132,82,691,0" VerticalAlignment="Top" Height="30" Width="180" Background="White"/>
+            <ComboBox x:Name="cboVuelos" HorizontalAlignment="Center" Margin="328,82,495,0" VerticalAlignment="Top" Height="30" Width="180"  Background="White"/>
+            <DatePicker x:Name="dpFecha" SelectedDate="{Binding SelectedItem.fecha, ElementName=DGVuelos}" HorizontalAlignment="Center" Margin="523,82,288,0" VerticalAlignment="Top" Height="30" Width="192" Background="White"/>
+            <TextBox x:Name="txtAsientos" Text="{Binding SelectedItem.cantReservada, ElementName=DGDetalles}" HorizontalAlignment="Center" PreviewTextInput="IntOnly" Height="30" Margin="724,82,134,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" FontSize="18" Background="White" />
 
             <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="668,128,142,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />
             <!--Click="btnGuardar_Click" -->
