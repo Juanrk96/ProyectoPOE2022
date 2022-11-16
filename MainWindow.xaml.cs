@@ -35,9 +35,7 @@ namespace ProyectoPOE
                 tt_pasajero.Visibility = Visibility.Collapsed;
                 tt_vuelo.Visibility = Visibility.Collapsed;
                 tt_reserva.Visibility = Visibility.Collapsed;
-                tt_reportes_pasajeros.Visibility = Visibility.Collapsed;
                 tt_reportes_vuelos.Visibility = Visibility.Collapsed;
-                tt_reportes_detalles.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -45,9 +43,7 @@ namespace ProyectoPOE
                 tt_pasajero.Visibility = Visibility.Visible;
                 tt_vuelo.Visibility = Visibility.Visible;
                 tt_reserva.Visibility = Visibility.Visible;
-                tt_reportes_pasajeros.Visibility = Visibility.Visible;
                 tt_reportes_vuelos.Visibility = Visibility.Visible;
-                tt_reportes_detalles.Visibility = Visibility.Visible;
             }
         }
 

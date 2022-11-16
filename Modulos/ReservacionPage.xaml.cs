@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace ProyectoPOE.Modulos
 {
@@ -33,7 +34,15 @@ namespace ProyectoPOE.Modulos
         public ReservacionPage()
         {
             InitializeComponent();
+
+            dpFecha.BlackoutDates.Add(new CalendarDateRange(new DateTime(1990, 1, 1),
+            DateTime.Now.AddDays(-1)));
             Refresh();
+        }
+        private void IntOnly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void Refresh()
@@ -126,52 +135,59 @@ namespace ProyectoPOE.Modulos
             dpFecha.SelectedDate = DateTime.Today;
             txtAsientos.Text = "";
             btnGuardar.IsEnabled = false;
+            EstadoActual = Convert.ToInt32(EstadosVuelo.Default);
+            lblMensajeAlerta.Content = "";
         }
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-
-            using (Modelo.sivarviajesEntities db = new Modelo.sivarviajesEntities())
+            if (txtAsientos.Text == "")
+                lblMensajeAlerta.Content = "Verifique que todos los campos esten llenos";
+            else
             {
-                if (EstadoActual == ((int)EstadosReservacion.Nuevo))
+                using (Modelo.sivarviajesEntities db = new Modelo.sivarviajesEntities())
                 {
-                    //string FechaFormat;
-                    var oReservacion = new Modelo.reservacion();
-                    oReservacion.fecha = dpFecha.SelectedDate;
-                    oReservacion.idVuelo = Convert.ToInt32(cboVuelos.SelectedValue);
-                    oReservacion.cantReservada = Convert.ToInt32(txtAsientos.Text);
-                    db.reservacion.Add(oReservacion);
-                    db.Entry(oReservacion).State = System.Data.Entity.EntityState.Added;
+                    if (EstadoActual == ((int)EstadosReservacion.Nuevo))
+                    {
+                        //string FechaFormat;
+                        var oReservacion = new Modelo.reservacion();
+                        oReservacion.fecha = dpFecha.SelectedDate;
+                        oReservacion.idVuelo = Convert.ToInt32(cboVuelos.SelectedValue);
+                        oReservacion.cantReservada = Convert.ToInt32(txtAsientos.Text);
+                        db.reservacion.Add(oReservacion);
+                        db.Entry(oReservacion).State = System.Data.Entity.EntityState.Added;
 
-                    var oDetalles = new Modelo.detalle_reservacion();
-                    oDetalles.idReservacion = oReservacion.idReservacion;
-                    oDetalles.idPasajero = Convert.ToInt32(cboPasajeros.SelectedValue);
-                    db.Entry(oDetalles).State = System.Data.Entity.EntityState.Added;
+                        var oDetalles = new Modelo.detalle_reservacion();
+                        oDetalles.idReservacion = oReservacion.idReservacion;
+                        oDetalles.idPasajero = Convert.ToInt32(cboPasajeros.SelectedValue);
+                        db.Entry(oDetalles).State = System.Data.Entity.EntityState.Added;
 
-                    db.SaveChanges();
+                        db.SaveChanges();
+                    }
+                    else if (EstadoActual == ((int)EstadosReservacion.Modificar))
+                    {
+                        var oReservacion = db.reservacion.Find(Convert.ToInt32(txtIdReservacion.Text));
+                        oReservacion.fecha = dpFecha.SelectedDate;
+                        oReservacion.idVuelo = Convert.ToInt32(cboVuelos.SelectedValue);
+                        oReservacion.cantReservada = Convert.ToInt32(txtAsientos.Text);
+                        db.Entry(oReservacion).State = System.Data.Entity.EntityState.Modified;
+
+                        var oDetalles = db.detalle_reservacion.Find(Convert.ToInt32(txtIdDetallesReserva.Text));
+                        oDetalles.idPasajero = Convert.ToInt32(cboPasajeros.SelectedValue);
+                        db.Entry(oDetalles).State = System.Data.Entity.EntityState.Modified;
+
+                        db.SaveChanges();
+                    }
+                    else if (EstadoActual == ((int)EstadosReservacion.Eliminar) || chkEliminar.IsChecked == true)
+                    {
+                        var oDetalles = db.detalle_reservacion.Find(Convert.ToInt32(txtIdDetallesReserva.Text));
+                        db.Entry(oDetalles).State = System.Data.Entity.EntityState.Deleted;
+                        db.SaveChanges();
+                    }
+
                 }
-                else if (EstadoActual == ((int)EstadosReservacion.Modificar))
-                {
-                    var oReservacion = db.reservacion.Find(Convert.ToInt32(txtIdReservacion.Text));
-                    oReservacion.fecha = dpFecha.SelectedDate;
-                    oReservacion.idVuelo = Convert.ToInt32(cboVuelos.SelectedValue);
-                    oReservacion.cantReservada = Convert.ToInt32(txtAsientos.Text);
-                    db.Entry(oReservacion).State = System.Data.Entity.EntityState.Modified;
-
-                    var oDetalles = db.detalle_reservacion.Find(Convert.ToInt32(txtIdDetallesReserva.Text));
-                    oDetalles.idPasajero = Convert.ToInt32(cboPasajeros.SelectedValue);
-                    db.Entry(oDetalles).State = System.Data.Entity.EntityState.Modified;
-
-                    db.SaveChanges();
-                }
-                else if (EstadoActual == ((int)EstadosReservacion.Eliminar) || chkEliminar.IsChecked == true)
-                {
-                    var oDetalles = db.detalle_reservacion.Find(Convert.ToInt32(txtIdDetallesReserva.Text));
-                    db.Entry(oDetalles).State = System.Data.Entity.EntityState.Deleted;
-                    db.SaveChanges();
-                }
-
+                Refresh();
             }
-            Refresh();
+
         }
 
         private void Agregar_nuevo_Click(object sender, RoutedEventArgs e)
@@ -208,7 +224,7 @@ namespace ProyectoPOE.Modulos
             EstadoActual = Convert.ToInt32(EstadosReservacion.Modificar);
             cboPasajeros.IsEnabled = true;
             cboVuelos.IsEnabled = true;
-            dpFecha.IsEnabled = true;
+            dpFecha.IsEnabled = false;
             txtAsientos.IsEnabled = true;
             btnGuardar.IsEnabled = true;
             Agregar_nuevo.IsEnabled = false;

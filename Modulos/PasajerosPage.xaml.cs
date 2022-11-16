@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace ProyectoPOE.Modulos
 {
@@ -34,6 +35,11 @@ namespace ProyectoPOE.Modulos
         {
             InitializeComponent();
             Refresh();
+        }
+        private void intOnly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void Refresh()
@@ -73,6 +79,7 @@ namespace ProyectoPOE.Modulos
             txtNombre.Text = "";
             txtTelefono.Text = "";
             EstadoActual = Convert.ToInt32(EstadosPasajeros.Default);
+            lblMensajeAlerta.Content = "";
 
         }
 
@@ -81,46 +88,51 @@ namespace ProyectoPOE.Modulos
 
             using (Modelo.sivarviajesEntities db = new Modelo.sivarviajesEntities())
             {
-                if (EstadoActual == ((int)EstadosPasajeros.Nuevo))
+                if (txtDireccion.Text == ""|| txtEmail.Text == "" || txtTelefono.Text=="" || txtNombre.Text=="")
+                    lblMensajeAlerta.Content = "Verifique que todos los campos esten llenos";
+                else
                 {
-                    //string FechaFormat;
-                    var oPasajero = new Modelo.pasajero();
-                    oPasajero.nombre = txtNombre.Text;
-                    oPasajero.telefono = txtTelefono.Text;
-                    oPasajero.email = txtEmail.Text;
-                    oPasajero.direccion = txtDireccion.Text.ToString();
-                    db.pasajero.Add(oPasajero);
-                    db.Entry(oPasajero).State = System.Data.Entity.EntityState.Added;
-                    
-                    db.SaveChanges();
-                }
-                else if (EstadoActual == ((int)EstadosPasajeros.Modificar))
-                {
-                    var oPasajero = db.pasajero.Find(Convert.ToInt32(txtIdPropietrio.Text));
-                    oPasajero.nombre = txtNombre.Text;
-                    oPasajero.telefono = txtTelefono.Text;
-                    oPasajero.direccion = txtDireccion.Text;
-                    oPasajero.email = txtEmail.Text;
-                    db.Entry(oPasajero).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else if (EstadoActual == ((int)EstadosPasajeros.Eliminar) || chkEliminar.IsChecked == true)
-                {
-                    try
+                    if (EstadoActual == ((int)EstadosPasajeros.Nuevo))
+                    {
+                        //string FechaFormat;
+                        var oPasajero = new Modelo.pasajero();
+                        oPasajero.nombre = txtNombre.Text;
+                        oPasajero.telefono = txtTelefono.Text;
+                        oPasajero.email = txtEmail.Text;
+                        oPasajero.direccion = txtDireccion.Text.ToString();
+                        db.pasajero.Add(oPasajero);
+                        db.Entry(oPasajero).State = System.Data.Entity.EntityState.Added;
+
+                        db.SaveChanges();
+                    }
+                    else if (EstadoActual == ((int)EstadosPasajeros.Modificar))
                     {
                         var oPasajero = db.pasajero.Find(Convert.ToInt32(txtIdPropietrio.Text));
-                        db.Entry(oPasajero).State = System.Data.Entity.EntityState.Deleted;
+                        oPasajero.nombre = txtNombre.Text;
+                        oPasajero.telefono = txtTelefono.Text;
+                        oPasajero.direccion = txtDireccion.Text;
+                        oPasajero.email = txtEmail.Text;
+                        db.Entry(oPasajero).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
-                        lblMensajeAlerta.Content = "";
                     }
-                    catch (Exception ex)
+                    else if (EstadoActual == ((int)EstadosPasajeros.Eliminar) || chkEliminar.IsChecked == true)
                     {
-                        lblMensajeAlerta.Content = "No se puede eliminar, El resgistro esta referencado a otro(s) record(s)";
+                        try
+                        {
+                            var oPasajero = db.pasajero.Find(Convert.ToInt32(txtIdPropietrio.Text));
+                            db.Entry(oPasajero).State = System.Data.Entity.EntityState.Deleted;
+                            db.SaveChanges();
+                            lblMensajeAlerta.Content = "";
+                        }
+                        catch (Exception ex)
+                        {
+                            lblMensajeAlerta.Content = "No se puede eliminar, El resgistro esta referencado a otro(s) record(s)";
+                        }
                     }
+                    Refresh();
                 }
-
             }
-            Refresh();
+            
         }
 
         private void Agregar_nuevo_Click(object sender, RoutedEventArgs e)

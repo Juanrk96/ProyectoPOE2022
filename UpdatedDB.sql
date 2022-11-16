@@ -7,8 +7,8 @@ create table vuelo (
 	origen varchar(60),
 	destino varchar (60),
 	fecha date,
-	hora_salida time,
-	hora_llegada time,
+	hora_salida datetime,
+	hora_llegada datetime,
 	asientos int,
 	costoVuelo float
 )

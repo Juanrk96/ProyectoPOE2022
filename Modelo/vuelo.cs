@@ -19,8 +19,8 @@ namespace ProyectoPOE.Modelo
         public string origen { get; set; }
         public string destino { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<System.TimeSpan> hora_salida { get; set; }
-        public Nullable<System.TimeSpan> hora_llegada { get; set; }
+        public Nullable<System.DateTime> hora_salida { get; set; }
+        public Nullable<System.DateTime> hora_llegada { get; set; }
         public Nullable<int> asientos { get; set; }
         public Nullable<double> costoVuelo { get; set; }
     }

@@ -14,7 +14,7 @@
             <DatePicker x:Name="dpFecha" SelectedDate="{Binding SelectedItem.fecha, ElementName=DGVuelos}" HorizontalAlignment="Center" Margin="523,82,288,0" VerticalAlignment="Top" Height="30" Width="192"/>
 
             <ComboBox x:Name="cboPasajeros" HorizontalAlignment="Center" Margin="132,82,691,0" VerticalAlignment="Top" Height="30" Width="180"/>
-            <ComboBox x:Name="cboVuelos" HorizontalAlignment="Center" Margin="328,82,495,0" VerticalAlignment="Top" Height="30" Width="180"/>
+            <ComboBox x:Name="cboVuelos" HorizontalAlignment="Center" Margin="328,82,495,0" VerticalAlignment="Top" Height="30" Width="180" PreviewTextInput="IntOnly"/>
             <TextBox x:Name="txtAsientos" Text="{Binding SelectedItem.cantReservada, ElementName=DGDetalles}" HorizontalAlignment="Center" Height="30" Margin="724,82,134,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" FontSize="18" />
 
             <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="668,128,142,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />
@@ -23,7 +23,7 @@
             <!--Click="btnCancelar_Click" -->
 
 
-            <Label x:Name="lblMensajeAlerta" Content="" Foreground="DarkRed" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="193,314,177,0" VerticalAlignment="Top" Width="570" Height="32" FontSize="18"/>
+            <Label x:Name="lblMensajeAlerta" Content="" Foreground="DarkRed" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="224,170,209,0" VerticalAlignment="Top" Width="570" Height="32" FontSize="18"/>
             <Label Content="Vuelo" HorizontalAlignment="Center" Margin="332,48,479,0" VerticalAlignment="Top" Width="192" Height="37" FontSize="18"/>
             <Button x:Name="Agregar_nuevo" Content="Nuevo" HorizontalAlignment="Center" Margin="351,129,459,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="Agregar_nuevo_Click"/>
             <!--Click="Agregar_nuevo_Click" -->
@@ -35,7 +35,7 @@
             <Label Content="Fecha" HorizontalAlignment="Center" Margin="523,48,388,0" VerticalAlignment="Top" Width="92" Height="37" FontSize="18"/>
 
             <Label Content="Cant. Reservada" HorizontalAlignment="Center" Margin="723,48,153,0" VerticalAlignment="Top" Width="127" Height="37" FontSize="18" RenderTransformOrigin="0.535,2.909"/>
-            <DataGrid x:Name="DGDetalles" AutoGenerateColumns="False" IsReadOnly="True"  Margin="27,180,27,27" Width="Auto" Height="Auto" FontSize="18"  ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" PreviewMouseUp="DGPasajero_PreviewMouseUp">
+            <DataGrid x:Name="DGDetalles" AutoGenerateColumns="False" IsReadOnly="True"  Margin="27,207,27,27" Width="Auto" Height="Auto" FontSize="18"  ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" PreviewMouseUp="DGPasajero_PreviewMouseUp">
                 <!--PreviewMouseUp="DGPasajero_PreviewMouseUp"-->
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" Header="ID" x:Name="idDetalle" Binding="{Binding idDetalle}" CanUserResize="False" Visibility="Hidden"></DataGridTextColumn>

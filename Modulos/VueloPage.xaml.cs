@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace ProyectoPOE.Modulos
 {
@@ -33,9 +34,16 @@ namespace ProyectoPOE.Modulos
         public VuelosPage()
         {
             InitializeComponent();
+            dpFecha.BlackoutDates.Add(new CalendarDateRange(new DateTime(1990, 1, 1),
+            DateTime.Now.AddDays(-1)));
             Refresh();
-        }
 
+        }
+        private void IntOnly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
         private void Refresh()
         {
             List<VueloViewModel> listVuelos = new List<VueloViewModel>();
@@ -67,8 +75,8 @@ namespace ProyectoPOE.Modulos
             txtOrigen.IsEnabled = false;
             txtDestino.IsEnabled = false;
             dpFecha.IsEnabled = false;
-            txtSalida.IsEnabled = false;
-            txtLlegada.IsEnabled = false;
+            dpSalida.IsEnabled = false;
+            dpLlegada.IsEnabled = false;
             txtAsientos.IsEnabled = false;
             txtCosto.IsEnabled = false;
 
@@ -81,11 +89,14 @@ namespace ProyectoPOE.Modulos
             txtAerolinea.Text = "";
             txtOrigen.Text = "";
             txtDestino.Text = "";
-            txtSalida.Text = "";
-            txtLlegada.Text = "";
+            dpSalida.DisplayDate = DateTime.Today;
+            dpLlegada.DisplayDate =  DateTime.Today;
+            hora_llegada = null;
+            hora_salida = null;
             txtAsientos.Text = "";
             txtCosto.Text = "";
             EstadoActual = Convert.ToInt32(EstadosVuelo.Default);
+            lblMensajeAlerta.Content = "";
 
         }
 
@@ -94,57 +105,65 @@ namespace ProyectoPOE.Modulos
 
             using (Modelo.sivarviajesEntities db = new Modelo.sivarviajesEntities())
             {
-                if (EstadoActual == ((int)EstadosVuelo.Nuevo))
+                if(txtAerolinea.Text == "" || txtAsientos.Text=="" || txtCosto.Text=="" ||txtDestino.Text == "" || txtOrigen.Text=="" || hora_llegada.Text == "" || hora_salida.Text=="")
+                    lblMensajeAlerta.Content = "Por favor Llene todos los campos.";
+                else if((dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay)< (dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay))
+                    lblMensajeAlerta.Content = "La llegada no puede ser antes que la salida";
+                else
                 {
-                    //string FechaFormat;
-                    var oVuelo = new Modelo.vuelo();
-                    oVuelo.aerolinea = txtAerolinea.Text;
-                    oVuelo.origen = txtOrigen.Text;
-                    oVuelo.destino = txtDestino.Text;
-                    oVuelo.fecha = dpFecha.SelectedDate;
-                    oVuelo.hora_salida = TimeSpan.Parse(txtSalida.Text);
-                    oVuelo.hora_llegada = TimeSpan.Parse(txtLlegada.Text);
-                    oVuelo.asientos = int.Parse(txtAsientos.Text);
-                    oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
-                    db.vuelo.Add(oVuelo);
-                    db.Entry(oVuelo).State = System.Data.Entity.EntityState.Added;                    
-                    db.SaveChanges();
-                    lblMensajeAlerta.Content = "";
-                }
-                else if (EstadoActual == ((int)EstadosVuelo.Modificar))
-                {
-                    var oVuelo = db.vuelo.Find(Convert.ToInt32(txtIdVuelo.Text));
-                    oVuelo.aerolinea = txtAerolinea.Text;
-                    oVuelo.origen = txtOrigen.Text;
-                    oVuelo.destino = txtDestino.Text;
-                    oVuelo.fecha = dpFecha.SelectedDate;
-                    oVuelo.hora_salida = TimeSpan.Parse(txtSalida.Text);
-                    oVuelo.hora_llegada = TimeSpan.Parse(txtLlegada.Text);
-                    oVuelo.asientos = int.Parse(txtAsientos.Text);
-                    oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
-                    db.Entry(oVuelo).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    lblMensajeAlerta.Content = "";
-
-                }
-                else if (EstadoActual == ((int)EstadosVuelo.Eliminar) || chkEliminar.IsChecked == true)
-                {
-                    try
+                    if (EstadoActual == ((int)EstadosVuelo.Nuevo))
                     {
-                        var oVuelo = db.vuelo.Find(Convert.ToInt32(txtIdVuelo.Text));
-                        db.Entry(oVuelo).State = System.Data.Entity.EntityState.Deleted;
+                        //string FechaFormat;
+                        var oVuelo = new Modelo.vuelo();
+                        oVuelo.aerolinea = txtAerolinea.Text;
+                        oVuelo.origen = txtOrigen.Text;
+                        oVuelo.destino = txtDestino.Text;
+                        oVuelo.fecha = dpFecha.SelectedDate;
+                        oVuelo.hora_salida = dpSalida.SelectedDate;
+                        oVuelo.hora_llegada = dpLlegada.SelectedDate;
+                        oVuelo.asientos = int.Parse(txtAsientos.Text);
+                        oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
+                        db.vuelo.Add(oVuelo);
+                        db.Entry(oVuelo).State = System.Data.Entity.EntityState.Added;
                         db.SaveChanges();
                         lblMensajeAlerta.Content = "";
                     }
-                    catch (Exception ex)
+                    else if (EstadoActual == ((int)EstadosVuelo.Modificar))
                     {
-                        lblMensajeAlerta.Content = "No se puede eliminar, El resgistro esta referencado a otro(s) record(s)";
-                    }
-                    
-                }
+                        var oVuelo = db.vuelo.Find(Convert.ToInt32(txtIdVuelo.Text));
+                        oVuelo.aerolinea = txtAerolinea.Text;
+                        oVuelo.origen = txtOrigen.Text;
+                        oVuelo.destino = txtDestino.Text;
+                        oVuelo.fecha = dpFecha.SelectedDate;
+                        oVuelo.hora_salida = dpSalida.SelectedDate.Value.Date + hora_salida.SelectedTime.Value.TimeOfDay;
+                        oVuelo.hora_llegada = dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay;
+                        oVuelo.asientos = int.Parse(txtAsientos.Text);
+                        oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
+                        db.Entry(oVuelo).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        lblMensajeAlerta.Content = "";
 
+                    }
+                    else if (EstadoActual == ((int)EstadosVuelo.Eliminar) || chkEliminar.IsChecked == true)
+                    {
+                        try
+                        {
+                            var oVuelo = db.vuelo.Find(Convert.ToInt32(txtIdVuelo.Text));
+                            db.Entry(oVuelo).State = System.Data.Entity.EntityState.Deleted;
+                            db.SaveChanges();
+                            lblMensajeAlerta.Content = "";
+                        }
+                        catch (Exception ex)
+                        {
+                            lblMensajeAlerta.Content = "No se puede eliminar, El resgistro esta referencado a otro(s) record(s)";
+                        }
+
+                    }
+                    Refresh();
+                }
+               
             }
-            Refresh();
+            
         }
 
         private void Agregar_nuevo_Click(object sender, RoutedEventArgs e)
@@ -154,8 +173,8 @@ namespace ProyectoPOE.Modulos
             txtOrigen.IsEnabled = true;
             txtDestino.IsEnabled = true;
             dpFecha.IsEnabled = true;
-            txtSalida.IsEnabled = true;
-            txtLlegada.IsEnabled = true;
+            dpSalida.IsEnabled = true;
+            dpLlegada.IsEnabled = true;
             txtAsientos.IsEnabled = true;
             txtCosto.IsEnabled = true;
             btnGuardar.IsEnabled = true;
@@ -171,8 +190,8 @@ namespace ProyectoPOE.Modulos
             txtOrigen.IsEnabled = false;
             txtDestino.IsEnabled = false;
             dpFecha.IsEnabled = false;
-            txtSalida.IsEnabled = false;
-            txtLlegada.IsEnabled = false;
+            dpSalida.IsEnabled = false;
+            dpLlegada.IsEnabled = false;
             txtAsientos.IsEnabled = false;
             txtCosto.IsEnabled = false;
             btnGuardar.IsEnabled = true;
@@ -191,8 +210,8 @@ namespace ProyectoPOE.Modulos
             txtOrigen.IsEnabled = true;
             txtDestino.IsEnabled = true;
             dpFecha.IsEnabled = true;
-            txtSalida.IsEnabled = true;
-            txtLlegada.IsEnabled = true;
+            dpSalida.IsEnabled = true;
+            dpLlegada.IsEnabled = true;
             txtAsientos.IsEnabled = true;
             txtCosto.IsEnabled = true;
             btnGuardar.IsEnabled = true;
@@ -210,8 +229,8 @@ namespace ProyectoPOE.Modulos
         public string origen { get; set; }
         public string destino { get; set; }
         public DateTime? fecha { get; set; }
-        public TimeSpan? salida { get; set; }
-        public TimeSpan? llegada { get; set; }
+        public DateTime? salida { get; set; }
+        public DateTime? llegada { get; set; }
         public int? asientos { get; set;}
         public double? costo { get; set;}
 

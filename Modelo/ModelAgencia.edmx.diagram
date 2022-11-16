@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4218182b05214f71814e6879d366c612" Name="Diagram1">
         <EntityTypeShape EntityType="sivarviajesModel.detalle_reservacion" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="sivarviajesModel.pasajero" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sivarviajesModel.pasajero" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="sivarviajesModel.reservacion" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="sivarviajesModel.vuelo" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="sivarviajesModel.FK__detalle_r__idPas__2C3393D0" ManuallyRouted="false" />

@@ -41,8 +41,8 @@
           <Property Name="origen" Type="varchar" MaxLength="60" />
           <Property Name="destino" Type="varchar" MaxLength="60" />
           <Property Name="fecha" Type="date" />
-          <Property Name="hora_salida" Type="time" Precision="7" />
-          <Property Name="hora_llegada" Type="time" Precision="7" />
+          <Property Name="hora_salida" Type="date" />
+          <Property Name="hora_llegada" Type="date" />
           <Property Name="asientos" Type="int" />
           <Property Name="costoVuelo" Type="float" />
         </EntityType>
@@ -140,8 +140,8 @@
           <Property Name="origen" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="destino" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="hora_salida" Type="Time" Precision="7" />
-          <Property Name="hora_llegada" Type="Time" Precision="7" />
+          <Property Name="hora_salida" Type="DateTime" />
+          <Property Name="hora_llegada" Type="DateTime" />
           <Property Name="asientos" Type="Int32" />
           <Property Name="costoVuelo" Type="Double" />
         </EntityType>
