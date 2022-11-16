@@ -1,4 +1,6 @@
 create database sivarviajes
+go
+
 use sivarviajes
 
 create table vuelo (
