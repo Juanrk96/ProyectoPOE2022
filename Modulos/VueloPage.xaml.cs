@@ -91,8 +91,6 @@ namespace ProyectoPOE.Modulos
             txtDestino.Text = "";
             dpSalida.DisplayDate = DateTime.Today;
             dpLlegada.DisplayDate =  DateTime.Today;
-            hora_llegada = null;
-            hora_salida = null;
             txtAsientos.Text = "";
             txtCosto.Text = "";
             EstadoActual = Convert.ToInt32(EstadosVuelo.Default);
@@ -102,12 +100,11 @@ namespace ProyectoPOE.Modulos
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-
             using (Modelo.sivarviajesEntities db = new Modelo.sivarviajesEntities())
             {
-                if(txtAerolinea.Text == "" || txtAsientos.Text=="" || txtCosto.Text=="" ||txtDestino.Text == "" || txtOrigen.Text=="" || hora_llegada.Text == "" || hora_salida.Text=="")
+                if(txtAerolinea.Text == "" || txtAsientos.Text=="" || txtCosto.Text=="" ||txtDestino.Text == "" || txtOrigen.Text=="" || hora_llegada.SelectedTime == null || hora_salida.SelectedTime == null)
                     lblMensajeAlerta.Content = "Por favor Llene todos los campos.";
-                else if((dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay)< (dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay))
+                else if((dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay)<=(dpSalida.SelectedDate.Value.Date + hora_salida.SelectedTime.Value.TimeOfDay))
                     lblMensajeAlerta.Content = "La llegada no puede ser antes que la salida";
                 else
                 {
@@ -119,8 +116,8 @@ namespace ProyectoPOE.Modulos
                         oVuelo.origen = txtOrigen.Text;
                         oVuelo.destino = txtDestino.Text;
                         oVuelo.fecha = dpFecha.SelectedDate;
-                        oVuelo.hora_salida = dpSalida.SelectedDate;
-                        oVuelo.hora_llegada = dpLlegada.SelectedDate;
+                        oVuelo.hora_salida = dpSalida.SelectedDate.Value.Date + hora_salida.SelectedTime.Value.TimeOfDay;
+                        oVuelo.hora_llegada = dpLlegada.SelectedDate.Value.Date + hora_llegada.SelectedTime.Value.TimeOfDay;
                         oVuelo.asientos = int.Parse(txtAsientos.Text);
                         oVuelo.costoVuelo = Double.Parse(txtCosto.Text);
                         db.vuelo.Add(oVuelo);
