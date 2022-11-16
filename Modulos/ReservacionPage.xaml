@@ -18,7 +18,7 @@
 
             <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Center" Margin="668,128,142,0" VerticalAlignment="Top"  Width="130" Height="36" FontSize="18" Click="btnGuardar_Click" />
             <!--Click="btnGuardar_Click" -->
-            <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Center" Margin="514,128,302,0" VerticalAlignment="Top" Width="124" Height="36" FontSize="18"/>
+            <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Center" Margin="514,128,302,0" VerticalAlignment="Top" Width="124" Height="36" FontSize="18" Click="btnCancelar_Click"/>
             <!--Click="btnCancelar_Click" -->
 
 
